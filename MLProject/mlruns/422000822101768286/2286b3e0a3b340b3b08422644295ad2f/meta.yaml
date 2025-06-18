@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/422000822101768286/2286b3e0a3b340b3b08422644295ad2f/artifacts
+end_time: 1750240732809
+entry_point_name: ''
+experiment_id: '422000822101768286'
+lifecycle_stage: active
+run_id: 2286b3e0a3b340b3b08422644295ad2f
+run_name: logreg-basic
+run_uuid: 2286b3e0a3b340b3b08422644295ad2f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750240712555
+status: 3
+tags: []
+user_id: acer
