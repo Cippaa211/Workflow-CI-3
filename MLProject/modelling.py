@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # ====================== Setup MLflow =======================
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+mlflow.set_tracking_uri("file:./mlruns")  # Lokasi tracking lokal, aman untuk CI/CD
 mlflow.set_experiment("titanic-logreg-basic")
 
 # ====================== Load Data ==========================
@@ -27,7 +27,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # ====================== Training ============================
-model = LogisticRegression()
+model = LogisticRegression(max_iter=300)  # Tambah iterasi agar model konvergen
 model.fit(X_train, y_train)
 
 # ====================== Evaluation ==========================
@@ -40,6 +40,7 @@ f1 = f1_score(y_test, y_pred)
 # ====================== MLflow Logging ======================
 with mlflow.start_run(run_name="logreg-basic"):
     mlflow.log_param("model_type", "LogisticRegression")
+    mlflow.log_param("max_iter", 300)
 
     mlflow.log_metric("accuracy", acc)
     mlflow.log_metric("precision", prec)
