@@ -1,6 +1,7 @@
 import pandas as pd
 import mlflow
 import mlflow.sklearn
+import os
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -47,7 +48,8 @@ with mlflow.start_run(run_name="logreg-basic"):
     mlflow.log_metric("recall", rec)
     mlflow.log_metric("f1_score", f1)
 
-    # Simpan model saja (tanpa log_artifacts untuk hindari error mlflow-artifacts)
-    mlflow.sklearn.log_model(model, artifact_path="model")
+    # Simpan model ke folder lokal (bukan ke artifact server)
+    os.makedirs("outputs", exist_ok=True)
+    mlflow.sklearn.save_model(model, path="outputs/local_model")
 
     print(f"[INFO] Training selesai ✅ | Akurasi: {acc:.4f} | F1 Score: {f1:.4f}")
