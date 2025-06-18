@@ -26,7 +26,8 @@ jobs:
     - name: Install MLflow
       run: pip install mlflow
 
-    - name: Run MLflow Project
+    - name: Run modelling.py directly
+      shell: bash -l {0}  # penting agar conda activate dikenali
       run: |
         cd MLProject
-        mlflow run .
+        python modelling.py
